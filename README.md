@@ -50,7 +50,7 @@ SmartStudyPlanner/
 
 ### 1. Clone the repository
 
-git clone https://github.com/YOUR_USERNAME/SmartStudyPlanner.git
+git clone https://github.com/BitholSatapathy/SmartStudyPlanner.git
 
 
 ### 2. Navigate to source folder
