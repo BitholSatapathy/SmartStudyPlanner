@@ -1,103 +1,109 @@
-# 📚 Smart Study Planner (CLI Based)
+# Smart Study Planner (CLI)
 
-## 📌 Project Description
-Smart Study Planner is a command-line based Java application designed to help students manage their study tasks efficiently. It allows users to add tasks, automatically assigns priority based on deadline and difficulty, and detects potential burnout based on workload.
+Smart Study Planner is a command-line Java app that helps students track study tasks, prioritize work, and spot overload early.
 
----
+## Features
 
-## 🎯 Features
-- ➕ Add new study tasks
-- 📋 View all tasks sorted by priority
-- 🧠 Automatic priority calculation
-- ⚠️ Burnout detection (based on workload)
-- 💾 Save and load tasks using file handling
+- Add study tasks with name, deadline, and difficulty.
+- Automatically calculate task priority.
+- View tasks sorted by priority (highest first).
+- Show a burnout warning when hard-task load is high.
+- Persist tasks to a local file and reload them on startup.
 
----
+## How Priority Works
 
-## 🛠️ Technologies Used
-- Java
-- OOP (Object-Oriented Programming)
-- File Handling (BufferedReader, BufferedWriter)
-- Collections (ArrayList)
+Priority is calculated from difficulty and deadline text:
 
----
+- Difficulty:
+	- Hard: +2
+	- Medium: +1
+	- Easy: +0
+- Deadline (string-based logic):
+	- Contains "today" or "1": +2
+	- Contains "2" or "3": +1
+	- Otherwise: +0
 
-## 📂 Project Structure
+Higher score means higher priority.
 
+## Burnout Detection
 
+The app prints a warning when 3 or more tasks are marked as Hard.
+
+## Project Structure
+
+```text
 SmartStudyPlanner/
-├── data/
-│ └── tasks.txt
-├── src/
-│ └── com/
-│ └── studyplanner/
-│ ├── Task.java
-│ ├── TaskManager.java
-│ ├── FileHandler.java
-│ ├── Main.java
-├── README.md
+|-- data/
+|   |-- tasks.txt
+|-- src/
+|   |-- com/
+|       |-- studyplanner/
+|           |-- Main.java
+|           |-- Task.java
+|           |-- TaskManager.java
+|           |-- FileHandler.java
+|-- README.md
+```
 
+## Requirements
 
----
+- Java JDK 8 or newer
+- PowerShell, Command Prompt, or any terminal
 
-## ⚙️ Requirements
-- Java JDK 8 or above
-- Terminal / Command Prompt
+## Run Locally
 
----
+From the project root:
 
-## ▶️ How to Run
+1. Compile:
 
-### 1. Clone the repository
+```bash
+javac -d out src/com/studyplanner/*.java
+```
 
-git clone https://github.com/BitholSatapathy/SmartStudyPlanner.git
+2. Run:
 
+```bash
+java -cp out com.studyplanner.Main
+```
 
-### 2. Navigate to source folder
+## Data Storage
 
-cd SmartStudyPlanner/src
+- Tasks are stored in: data/tasks.txt
+- File format per line:
 
+```text
+name,deadline,difficulty,priority
+```
 
-### 3. Compile the code
+Note: On load, the app currently recomputes priority from name/deadline/difficulty.
 
-javac com/studyplanner/*.java
+## Sample Flow
 
-
-### 4. Run the program
-
-java com.studyplanner.Main
-
-
----
-
-## 🧪 Sample Usage
-
-
+```text
 ===== MENU =====
+1. Add Task
+2. View Tasks
+3. Exit
+Enter your choice:
+```
 
-Add Task
-View Tasks
-Exit
+## Current Limitations
 
----
+- Deadline parsing is simple text matching.
+- No edit/delete command yet.
+- No tests included yet.
 
-## ⚠️ Burnout Detection Logic
-- Shows warning if too many hard tasks are added
-- Helps user balance workload
+## Future Improvements
 
----
+- Add task edit and delete options.
+- Replace text-based deadlines with real date parsing.
+- Add unit tests.
+- Optionally add a GUI.
 
-## 🚧 Future Improvements
-- Add GUI interface
-- Add task editing and deletion
-- Use database instead of file storage
+## Author
 
----
+Bithol Satapathy
 
-## 👨‍💻 Author
-- Your Name
+## License
 
----
-
-## 📜 License
-This project is for educational purposes only.
+This project is intended for educational use.
